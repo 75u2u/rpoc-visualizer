@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 body {
 	margin: 0;
 	background-color: #000;
 	color: #fff;
-	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", 'Orbitron', sans-serif;;
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
@@ -27,6 +29,7 @@ canvas {
 }
 
 #info {
+	font-family: 'Orbitron';
 	position: absolute;
 	top: 0px;
 	width: 100%;
@@ -44,6 +47,7 @@ canvas {
 }
 
 #time {
+	font-family: 'Orbitron';
 	position: absolute;
 	top: 0px;
 	width: 100%;
@@ -62,6 +66,7 @@ canvas {
 }
 
 #log {
+	font-family: 'Orbitron';
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
@@ -74,11 +79,12 @@ canvas {
 	user-select: none;
 	pointer-events: none;
 	z-index: 1;
-	font-size: 50px;
+	font-size: 30px;
 	line-height: 24px;
 }
 
 #point {
+	font-family: 'Orbitron';
 	position: absolute;
 	bottom: 0px;
 	width: 100%;

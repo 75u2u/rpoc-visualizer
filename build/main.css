@@ -58,6 +58,7 @@ canvas {
 	z-index: 1;
 	font-size: 100px;
 	line-height: 24px;
+	color: #ff0;
 }
 
 #log {
@@ -77,6 +78,24 @@ canvas {
 	line-height: 24px;
 }
 
+#point {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding: 50px;
+	box-sizing: border-box;
+	text-align: right;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	z-index: 1;
+	font-size: 100px;
+	line-height: 24px;
+	color: #0000ff;
+}
+
 a, button, input, select {
 	pointer-events: auto;
 }
@@ -86,7 +105,7 @@ a, button, input, select {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	z-index: 2 !important; /* TODO Solve this in HTML */
+	z-index: 2 !important;
 }
 
 #overlay {

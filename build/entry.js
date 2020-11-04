@@ -6,8 +6,8 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var intersectedObject, mouseOn;
 
-camera.position.z = 300;
-camera.position.y = 150;
+camera.position.z = 400;
+camera.position.y = 250;
 camera.position.x = 0;
 camera.lookAt(new THREE.Vector3());
 
@@ -23,18 +23,19 @@ scene.add(plane);
 
 // Objects
 var cubeGeo = new THREE.BoxGeometry(100, 50, 100);
-var taroMat = new THREE.MeshBasicMaterial({ color: 'orange' });
-var hanakoMat = new THREE.MeshBasicMaterial({ color: 'orange' });
+var cylinderGeo = new THREE.CylinderGeometry(50, 50, 50, 8); // top,bottom,height,segment
+var taroMat = new THREE.MeshNormalMaterial();
+var hanakoMat = new THREE.MeshNormalMaterial();
 var jammerMat = new THREE.MeshBasicMaterial({ color: 'red' });
-var taro = new THREE.Mesh(cubeGeo, taroMat);
-var hanako = new THREE.Mesh(cubeGeo, hanakoMat);
+var taro = new THREE.Mesh(cylinderGeo, taroMat);
+var hanako = new THREE.Mesh(cylinderGeo, hanakoMat);
 var jammer = new THREE.Mesh(cubeGeo, jammerMat);
 
 taro.position.y = 25
 hanako.position.y = 25
 jammer.position.y = 25
-taro.position.x = -155
-hanako.position.x = 155
+taro.position.x = -205
+hanako.position.x = 205
 jammer.position.x = 0
 scene.add(taro);
 scene.add(hanako);
@@ -151,7 +152,7 @@ createSprite(
     y: scaleMaster * (canvasHeight / canvasWidth),
     z: scaleMaster,
   },
-  { x: -150, y: 80, z: 0 }
+  { x: -205, y: 80, z: 0 }
 );
 
 const canvasRect2Texture = new THREE.CanvasTexture(
@@ -164,9 +165,34 @@ createSprite(
     y: scaleMaster * (canvasHeight / canvasWidth),
     z: scaleMaster,
   },
-  { x: 150, y: 80, z: 0 }
+  { x: 205, y: 80, z: 0 }
 );
 
+const canvasRect3Texture = new THREE.CanvasTexture(
+  createCanvasForTexture(canvasWidth, canvasHeight, '25/100', 120)
+);
+createSprite(
+  canvasRect3Texture,
+  {
+    x: scaleMaster,
+    y: scaleMaster * (canvasHeight / canvasWidth),
+    z: scaleMaster,
+  },
+  { x: 205, y: 30, z: 80 }
+);
+
+const canvasRect4Texture = new THREE.CanvasTexture(
+  createCanvasForTexture(canvasWidth, canvasHeight, '75/100', 120)
+);
+createSprite(
+  canvasRect4Texture,
+  {
+    x: scaleMaster,
+    y: scaleMaster * (canvasHeight / canvasWidth),
+    z: scaleMaster,
+  },
+  { x: -205, y: 30, z: 80 }
+);
 
 /*
 const wideImageTexture = createTexture(

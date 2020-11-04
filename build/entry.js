@@ -18,28 +18,38 @@ var planeGeo = new THREE.PlaneGeometry(1000, 1000);
 var planeMat = new THREE.MeshBasicMaterial({ color: 'gray' });
 planeMat.side = THREE.DoubleSide;
 var plane = new THREE.Mesh(planeGeo, planeMat);
-plane.rotation.x += 1.5708
+plane.rotation.x += 1.5708;
 scene.add(plane);
 
 // Objects
+var ReceiveData = 0; ////
+var Data = 0; ////
+var sphereGeo = new THREE.SphereGeometry(5, 32, 32);
 var cubeGeo = new THREE.BoxGeometry(100, 50, 100);
 var cylinderGeo = new THREE.CylinderGeometry(50, 50, 50, 8); // top,bottom,height,segment
+
 var taroMat = new THREE.MeshNormalMaterial();
 var hanakoMat = new THREE.MeshNormalMaterial();
 var jammerMat = new THREE.MeshBasicMaterial({ color: 'red' });
+var packetMat = new THREE.MeshNormalMaterial();
+
 var taro = new THREE.Mesh(cylinderGeo, taroMat);
 var hanako = new THREE.Mesh(cylinderGeo, hanakoMat);
 var jammer = new THREE.Mesh(cubeGeo, jammerMat);
+var packet= new THREE.Mesh(sphereGeo, packetMat);
 
 taro.position.y = 25
-hanako.position.y = 25
-jammer.position.y = 25
 taro.position.x = -205
+hanako.position.y = 25
 hanako.position.x = 205
+jammer.position.y = 25
 jammer.position.x = 0
+packet.position.y = 25
+packet.position.x = -205
 scene.add(taro);
 scene.add(hanako);
 scene.add(jammer);
+scene.add(packet);
 
 var onMouseMove = function (e) {
   raycaster.setFromCamera(mouse, camera);
@@ -85,10 +95,7 @@ document.body.style.margin = 0;
 document.body.appendChild(renderer.domElement);
 
 
-
-
-// ここからがSprite関係
-
+// Sprite関係
 // svgファイルのtextureを作成
 const createTexture = (filePath) => {
   return new THREE.TextureLoader().load(filePath);
@@ -169,7 +176,7 @@ createSprite(
 );
 
 const canvasRect3Texture = new THREE.CanvasTexture(
-  createCanvasForTexture(canvasWidth, canvasHeight, '25/100', 120)
+  createCanvasForTexture(canvasWidth, canvasHeight, ReceiveData + '/100', 120)
 );
 createSprite(
   canvasRect3Texture,
@@ -182,7 +189,7 @@ createSprite(
 );
 
 const canvasRect4Texture = new THREE.CanvasTexture(
-  createCanvasForTexture(canvasWidth, canvasHeight, '75/100', 120)
+  createCanvasForTexture(canvasWidth, canvasHeight, Data + '/100', 120)
 );
 createSprite(
   canvasRect4Texture,
@@ -205,3 +212,15 @@ createSprite(
 );
 createSprite(wideImageTexture, { x: 60, y: 30, z: 3 }, { x: 70, y: 20, z: 20 });
 */
+
+f();
+
+function f() {
+  requestAnimationFrame(f);
+  taro.rotation.y += 0.01;
+  hanako.rotation.y += 0.01;
+  if(packet.position.x <= 205) packet.position.x += 5;
+  else { packet.position.x = -205; ReceiveData += 1; }
+  // レンダリング
+  renderer.render(scene, camera);
+}

@@ -19,23 +19,24 @@ var planeMat = new THREE.MeshBasicMaterial({ color: 'gray' });
 planeMat.side = THREE.DoubleSide;
 var plane = new THREE.Mesh(planeGeo, planeMat);
 plane.rotation.x += 1.5708;
-scene.add(plane);
+///scene.add(plane);
 
 // Objects
 var ReceiveData = 0; ////
 var Data = 0; ////
 var sphereGeo = new THREE.SphereGeometry(5, 32, 32);
+var sphere1Geo = new THREE.SphereGeometry(40, 32, 32);
 var cubeGeo = new THREE.BoxGeometry(100, 50, 100);
 var cylinderGeo = new THREE.CylinderGeometry(50, 50, 50, 8); // top,bottom,height,segment
 
 var taroMat = new THREE.MeshNormalMaterial();
 var hanakoMat = new THREE.MeshNormalMaterial();
-var jammerMat = new THREE.MeshBasicMaterial({ color: 'red' });
+var jammerMat = new THREE.MeshBasicMaterial({ color: 'blue' });
 var packetMat = new THREE.MeshNormalMaterial();
 
 var taro = new THREE.Mesh(cylinderGeo, taroMat);
 var hanako = new THREE.Mesh(cylinderGeo, hanakoMat);
-var jammer = new THREE.Mesh(cubeGeo, jammerMat);
+var jammer = new THREE.Mesh(sphere1Geo, jammerMat);
 var packet= new THREE.Mesh(sphereGeo, packetMat);
 
 taro.position.y = 25

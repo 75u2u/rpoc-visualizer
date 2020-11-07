@@ -5,7 +5,9 @@ $smarty = new Smarty();
 $smarty->template_dir = "templates/";
 $smarty->compile_dir = "Smarty/templates_c/";
 
-$smarty->assign("time", "00:59");
+$time = time();
+
+$smarty->assign("time", $time);
 $smarty->assign("point", "334");
 
 $smarty->display("index.html");

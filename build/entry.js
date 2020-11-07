@@ -52,6 +52,16 @@ scene.add(hanako);
 scene.add(jammer);
 scene.add(packet);
 
+//頂点座標の配列
+const points = [];
+points.push(new THREE.Vector3(-205,25,0));
+points.push(new THREE.Vector3(-200,25,0));
+//頂点座標の配列からBufferGeometryを生成
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+const material = new THREE.LineBasicMaterial();
+const line = new THREE.Line(geometry,material);
+scene.add(line);
+
 var onMouseMove = function (e) {
   raycaster.setFromCamera(mouse, camera);
   var intersects = raycaster.intersectObjects(scene.children);
@@ -220,8 +230,9 @@ function f() {
   requestAnimationFrame(f);
   taro.rotation.y += 0.01;
   hanako.rotation.y += 0.01;
-  if(packet.position.x <= 205) packet.position.x += 5;
-  else { packet.position.x = -205; ReceiveData += 1; }
+  //if(packet.position.x <= 205) { packet.position.x += 5; line.position.x += 5; }
+  if(line.position.x <= 205) { packet.position.x += 5; line.position.x += 5; }
+  else { packet.position.x = -205; line.position.x = -205; ReceiveData += 1; }
   // レンダリング
   renderer.render(scene, camera);
 }

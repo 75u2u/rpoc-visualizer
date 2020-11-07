@@ -1,0 +1,14 @@
+{
+    "name": "Existing Docker Compose (Extend)",
+   
+    "dockerComposeFile": [
+      "../docker-compose.yml",
+    ],
+   
+    "service": "php",
+    "workspaceFolder": "/var/www/",
+    "extensions": [
+      "felixfbecker.php-debug",
+      "felixfbecker.php-intellisense"
+    ]
+  }

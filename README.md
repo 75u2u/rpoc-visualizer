@@ -1,2 +1,2 @@
 # rpoc-visualizer
-![visualizer](build\img\visualizer-haribote.PNG)
+![visualizer](./build/img/visualizer-haribote.PNG)

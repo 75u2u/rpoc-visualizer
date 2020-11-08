@@ -7,27 +7,18 @@
 		<script src="assets/js/Three.js"></script>
 		<script src="assets/js/OrbitControls.js"></script>
 		<script src="entry.js"></script>
+		<script src="countdown.js"></script>
 		<!--<script src="./index.js"></script>-->
 		<div id="info"><a href="https://www.ipa.go.jp/jinzai/camp/2020/zenkoku2020_program_list.html#list_a8" target="_blank" rel="noopener">Robust Protocol Open Challenge</a> Visualizer</div>
-		<div id="time"><script>
-			var count = 6000; // 初期値
-			var timerID = setInterval('countdown()',10); // 1000 = 1sec
-			function countdown() {
-				if(count > 0) {
-					count--;
-					var count_ms = count / 100;
-					if(count_ms < 10) count_ms = "0" + count_ms; // 桁合わせ
-					document.getElementById('time').innerHTML = "00:" + count_ms;
-				}
-			}</script></div>
+		<div id="time"></div>
 		<div id="log">hh:mm:ss  [udp] taro -> hanako<br>hh:mm:ss  [udp] taro -> hanako<br>hh:mm:ss  [udp] taro -> hanako</div>
 		<div id="point">{$point} pts.</div>
 		<iframe src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 		<audio autoplay id="audio">
-			<source src="./music/se_maoudamashii_magical01.mp3" type="audio/mp3">
+			<source src="music/se_maoudamashii_magical01.mp3" type="audio/mp3">
 		</audio>
 		<audio autoplay id="audio">
-			<source src="./music/Rico Puestel - Hacknet OST - 05 Roja Drifts By (Timo Jahns Strings Remix).mp3" type="audio/mp3">
+			<source src="music/Rico Puestel - Hacknet OST - 05 Roja Drifts By (Timo Jahns Strings Remix).mp3" type="audio/mp3">
 		</audio>
 	</body>
 </html>

@@ -62,7 +62,8 @@ canvas {
 	z-index: 1;
 	font-size: 100px;
 	line-height: 24px;
-	color: #ff0;
+	color: #f39800;
+/*	color: #ff0;*/
 }
 
 #log {

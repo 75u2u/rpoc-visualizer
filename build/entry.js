@@ -36,9 +36,7 @@ var Mat = new THREE.LineBasicMaterial( { color: 0xff8844 } );
 var taroMat = new THREE.MeshBasicMaterial({ color: 0xff8844, transparent: true, opacity: 0.8, });
 var hanakoMat = new THREE.MeshBasicMaterial({ color: 0xff8844, transparent: true, opacity: 0.8, });
 var jammerMat = new THREE.MeshBasicMaterial({ color: 'blue', transparent: true, opacity: 0.7, });
-var jammerMat1 = new THREE.MeshBasicMaterial({ color: 'white', wireframe: true, });
-//var jammerMat = new THREE.MeshBasicMaterial({ color: 'blue' });
-var packetMat = new THREE.MeshNormalMaterial();
+var jammerMat1 = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true, });
 
 var taro = new THREE.LineSegments(cylinderGeoEdges, Mat);
 var taro1 = new THREE.Mesh(cylinderGeo, taroMat);
@@ -46,8 +44,7 @@ var hanako = new THREE.LineSegments(cylinderGeoEdges, Mat);
 var hanako1 = new THREE.Mesh(cylinderGeo, hanakoMat);
 var jammer = new THREE.Mesh(octahedronGeo, jammerMat);
 var jammer1 = new THREE.Mesh(octahedronGeo, jammerMat1);
-var packet= new THREE.Mesh(sphereGeo, packetMat);
-var bigsphere = new THREE.LineSegments( bigsphereGeoEdges, new THREE.LineBasicMaterial( { color: 0xff8844, transparent: true, opacity: 1, } ) ); // 斜線の除去
+var bigsphere = new THREE.LineSegments( bigsphereGeoEdges, Mat );
 
 taro.position.y = 25
 taro.position.x = -255
@@ -61,28 +58,26 @@ jammer.position.y = 25
 jammer.position.x = 0
 jammer1.position.y = 25
 jammer1.position.x = 0
-packet.position.y = 25
-packet.position.x = -255
 scene.add(taro);
 scene.add(taro1);
 scene.add(hanako);
 scene.add(hanako1);
 scene.add(jammer);
 scene.add(jammer1);
-scene.add(packet);
 scene.add(bigsphere);
 
-/*
+// パケット
 //頂点座標の配列
 const points = [];
-points.push(new THREE.Vector3(-255,25,0));
-points.push(new THREE.Vector3(-200,25,0));
+points.push(new THREE.Vector3(0,25,0));
+points.push(new THREE.Vector3(10,25,0));
 //頂点座標の配列からBufferGeometryを生成
 const geometry = new THREE.BufferGeometry().setFromPoints(points);
 const material = new THREE.LineBasicMaterial();
 const line = new THREE.Line(geometry,material);
 scene.add(line);
-*/
+
+
 var onMouseMove = function (e) {
   raycaster.setFromCamera(mouse, camera);
   var intersects = raycaster.intersectObjects(scene.children);
@@ -165,7 +160,7 @@ const createCanvasForTexture = (canvasWidth, canvasHeight, text, fontSize) => {
 };
 
 //
-const canvasWidth = 500;
+const canvasWidth = 700;
 const canvasHeight = 200;
 const scaleMaster = 100;
 const canvasRectTexture = new THREE.CanvasTexture(
@@ -208,7 +203,7 @@ createSprite(
 );
 
 const canvasRect3Texture = new THREE.CanvasTexture(
-  createCanvasForTexture(canvasWidth, canvasHeight, ReceiveData + '/100', 120)
+  createCanvasForTexture(canvasWidth, canvasHeight, ReceiveData + '/1000', 120)
 );
 createSprite(
   canvasRect3Texture,
@@ -221,7 +216,7 @@ createSprite(
 );
 
 const canvasRect4Texture = new THREE.CanvasTexture(
-  createCanvasForTexture(canvasWidth, canvasHeight, Data + '/100', 120)
+  createCanvasForTexture(canvasWidth, canvasHeight, Data + '/1000', 120)
 );
 createSprite(
   canvasRect4Texture,
@@ -249,9 +244,11 @@ f();
 function f() {
   requestAnimationFrame(f);
   taro.rotation.y += 0.01;
+  taro1.rotation.y += 0.01;
   hanako.rotation.y += 0.01;
-  if(packet.position.x <= 255) { packet.position.x += 5;}
-  else { packet.position.x = -255; ReceiveData += 1; }
+  hanako1.rotation.y += 0.01;
+  if(line.position.x <= 255) { line.position.x += 10;}
+  else { line.position.x = -255; ReceiveData += 1; }
   // レンダリング
   renderer.render(scene, camera);
 }

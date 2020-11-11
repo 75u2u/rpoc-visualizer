@@ -7,10 +7,11 @@ function countdown() {
         if(count_ms < 10) count_ms = "0" + count_ms; // 桁合わせ
         document.getElementById('time').innerHTML = "00:" + count_ms;
     }
-    if(count <= 1000) {
+    if(count <= 1000) { // 10sec でレッドランプ
         document.getElementById('time').style.color = 'red';
     }
     else {
-        
+// ピーってならす
+// 点滅
     }
 }

@@ -1,3 +1,9 @@
+fetch('./log.js').then(r=>{return r.text()}).then(t=>{
+  // "t"にimport.jsのファイル内容が格納されているので
+  eval(t); //その内容を実行する
+});
+
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
@@ -69,14 +75,24 @@ scene.add(bigsphere);
 // パケット
 //頂点座標の配列
 const points = [];
-points.push(new THREE.Vector3(0,25,0));
-points.push(new THREE.Vector3(10,25,0));
+const points1 = [];
+const line = [];
+const line1 = [];
+points.push(new THREE.Vector3(-255,25,0));
+points.push(new THREE.Vector3(-245,25,0));
+points1.push(new THREE.Vector3(255,25,0));
+points1.push(new THREE.Vector3(245,25,0));
 //頂点座標の配列からBufferGeometryを生成
 const geometry = new THREE.BufferGeometry().setFromPoints(points);
-const material = new THREE.LineBasicMaterial();
-const line = new THREE.Line(geometry,material);
-scene.add(line);
+const geometry1 = new THREE.BufferGeometry().setFromPoints(points1);
+const material = new THREE.LineBasicMaterial( {linewidth: 10} );
 
+for(var c=0; c<1000; c++) {
+  line[c] = new THREE.Line(geometry,material);
+  line1[c] = new THREE.Line(geometry1,material);
+//  scene.add(line[c]);
+//  scene.add(line1[c]);
+}
 
 var onMouseMove = function (e) {
   raycaster.setFromCamera(mouse, camera);
@@ -202,6 +218,7 @@ createSprite(
   { x: 255, y: 80, z: 0 }
 );
 
+/*
 const canvasRect3Texture = new THREE.CanvasTexture(
   createCanvasForTexture(canvasWidth, canvasHeight, ReceiveData + '/1000', 120)
 );
@@ -247,8 +264,34 @@ function f() {
   taro1.rotation.y += 0.01;
   hanako.rotation.y += 0.01;
   hanako1.rotation.y += 0.01;
-  if(line.position.x <= 255) { line.position.x += 10;}
-  else { line.position.x = -255; ReceiveData += 1; }
+  if(count > 0) {
+    if(data[j][2] == "169.254.229.153") {
+      scene.add(line[j]);
+    }
+    line[j].position.x += 10;
+    if(line[j].position.x >= 250) {
+      scene.remove(line[j]);
+    }
+    if(data[j][2] == "169.254.155.219") {
+      scene.add(line1[j]);
+    }
+    line1[j].position.x -= 10;
+    if(line1[j].position.x <= -250) {
+      scene.remove(line1[j]);
+    }
+
+
+    /*
+    if(data[j][2] == "169.254.155.219") {
+      if(line[j--].position.x <= 255) {
+        line[j--].position.x += 15;
+      }
+      else { scene.remove(line[j]); }
+    }
+    */
+    //if(line1.position.x >= -255 && data[j][2] == "169.254.155.219") { line1.position.x -= 15;}
+    //else { line[j].position.x = -255; line1[j].position.x = 255; ReceiveData += 1; }
+  }
   // レンダリング
   renderer.render(scene, camera);
 }

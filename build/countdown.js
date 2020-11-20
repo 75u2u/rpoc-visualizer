@@ -1,5 +1,6 @@
 var count = 6000; // 初期値
 var timerID = setInterval('countdown()',10); // 1000 = 1sec
+
 function countdown() {
     if(count > 0) {
         count--;

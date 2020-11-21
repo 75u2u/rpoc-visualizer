@@ -5,7 +5,7 @@ $smarty = new Smarty();
 $smarty->template_dir = "templates/";
 $smarty->compile_dir = "Smarty/templates_c/";
 
-$smarty->assign("point", "334");
+//$smarty->assign("point", "334");
 
 /*
 $filer = fopen('log/Test1.csv', 'r');

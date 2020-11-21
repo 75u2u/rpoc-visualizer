@@ -1,7 +1,7 @@
 var i = 0;
 var j = 0;
 
-
+var protocol;
 var data;
 
 // CSVファイル読み込み
@@ -24,7 +24,6 @@ function csvToArray(path) {
 var count = 6000; // 初期値 60sec
 var timerID = setInterval('countdown()',10); // 1000 = 1sec
 
-var protocol;
 
 function countdown() {
     if(count > 0) {

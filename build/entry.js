@@ -87,7 +87,7 @@ const geometry = new THREE.BufferGeometry().setFromPoints(points);
 const geometry1 = new THREE.BufferGeometry().setFromPoints(points1);
 const material = new THREE.LineBasicMaterial( {linewidth: 10} );
 
-for(var c=0; c<1000; c++) {
+for(var c=0; c<100; c++) {
   line[c] = new THREE.Line(geometry,material);
   line1[c] = new THREE.Line(geometry1,material);
 //  scene.add(line[c]);
@@ -265,19 +265,19 @@ function f() {
   hanako.rotation.y += 0.01;
   hanako1.rotation.y += 0.01;
   if(count > 0) {
-    if(data[j][2] == "169.254.229.153") {
-      scene.add(line[j]);
+    if(data[s][3] == "00:14:d1:da:89:af") { //Taro 169.254.229.153
+      scene.add(line[s]);
     }
-    line[j].position.x += 10;
-    if(line[j].position.x >= 250) {
-      scene.remove(line[j]);
+    line[s].position.x += 10;
+    if(line[s].position.x >= 250) {
+      scene.remove(line[s]);
     }
-    if(data[j][2] == "169.254.155.219") {
-      scene.add(line1[j]);
+    if(data[s][3] == "b8:27:eb:5e:45:0a") { //Hanako 169.254.155.219
+      scene.add(line1[s]);
     }
-    line1[j].position.x -= 10;
-    if(line1[j].position.x <= -250) {
-      scene.remove(line1[j]);
+    line1[s].position.x -= 10;
+    if(line1[s].position.x <= -250) {
+      scene.remove(line1[s]);
     }
 
 

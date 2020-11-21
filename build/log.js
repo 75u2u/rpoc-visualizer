@@ -23,7 +23,7 @@ function csvToArray(path) {
 
 var count = 6000; // 初期値 60sec
 var timerID = setInterval('countdown()',10); // 1000 = 1sec
-
+var s; // パケット秒
 
 function countdown() {
     if(count > 0) {
@@ -37,13 +37,15 @@ function countdown() {
 		}
 		i=j;
 
+		s = parseInt(data[j][1], 10);
+
         if(count_ms < 10) count_ms = "0" + count_ms; // 桁合わせ
 		document.getElementById('time').innerHTML = "00:" + count_ms;
 		
-		protocol = data[j][2].replace("eth:ethertype:", "");
+		protocol = data[s][2].replace("eth:ethertype:", "");
 
 
-		document.getElementById('log').innerHTML = parseInt(data[j][1], 10) + "s " + " [ " + protocol + " ] " + data[j][3] + " → " + data[j][4];
+		document.getElementById('log').innerHTML = s + "s " + " [ " + protocol + " ] " + data[s][3] + " → " + data[s][4];
 
 		//document.getElementById('point').innerHTML = "10" + " pts.";
 
